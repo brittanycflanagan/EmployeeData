@@ -1,6 +1,9 @@
+// var name = "";
+// var role = "";
+// var date = "";
+// var rate = "";
 
 // Initialize Firebase
-
 var config = {
     apiKey: "AIzaSyCcPVCxkJ8y2UTq7WEAlM36UXBb5uFZtac",
     authDomain: "employee-data-30fb2.firebaseapp.com",
@@ -9,22 +12,24 @@ var config = {
     storageBucket: "employee-data-30fb2.appspot.com",
     messagingSenderId: "841144224128"
   };
-
-firebase.initializeApp(config);
-
-var database = firebase.database();
  
+firebase.initializeApp(config);
+var database = firebase.database();
 
 
-
-//Submit Button
 $("#submit").on("click", function() {
+
     event.preventDefault();
     var name = $("#name").val().trim();
     var role = $("#role").val().trim();
     var date = parseInt($("#date").val().trim());
     var rate = parseInt($("#rate").val().trim());
-   
+    
+    console.log(name);
+    console.log(role);
+    console.log(date);
+    console.log(rate);
+
     database.ref().push({
         name: name,
         role: role,
@@ -32,11 +37,7 @@ $("#submit").on("click", function() {
         rate: rate,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
-
-    console.log(name);
-    console.log(role);
-    console.log(date);
-    console.log(rate);
+    
     var tr = $("<tr>")
     var tdName = $("<td>").text(name);
     var tdRole = $("<td>").text(role);
@@ -48,8 +49,12 @@ $("#submit").on("click", function() {
     $("#newRow").append(tr);
 
     
-        
-});
+    $("#name").empty();
+    $("#role").empty();
+    $("#date").empty();
+    $("#rate").empty();
+});   
+
 
 
 
