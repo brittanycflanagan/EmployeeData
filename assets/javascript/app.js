@@ -1,10 +1,15 @@
+var name = "";
+var role = "";
+var date = "";
+var rate = "";
 
-$("#submit").on("click", function() {
+//$("#submit").on("click", function() 
+function putOnPage() {
     event.preventDefault();
-    var name = $("#name").val().trim();
-    var role = $("#role").val().trim();
-    var date = parseInt($("#date").val().trim());
-    var rate = parseInt($("#rate").val().trim());
+    name = $("#name").val().trim();
+    role = $("#role").val().trim();
+    date = parseInt($("#date").val().trim());
+    rate = parseInt($("#rate").val().trim());
     console.log(name);
     console.log(role);
     console.log(date);
@@ -24,7 +29,7 @@ $("#submit").on("click", function() {
     $("#date").empty();
     $("#rate").empty();
         
-});
+};
 
 
 
