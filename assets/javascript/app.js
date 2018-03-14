@@ -22,12 +22,12 @@ $("#submit").on("click", function() {
     event.preventDefault();
     var name = $("#name").val().trim();
     var role = $("#role").val().trim();
-    var date = parseInt($("#date").val().trim());
+    var date = $("#date").val().trim();
     var rate = parseInt($("#rate").val().trim());
     
     console.log(name);
     console.log(role);
-    console.log(date);
+    console.log(moment(date));
     console.log(rate);
 
     database.ref().push({
@@ -38,15 +38,7 @@ $("#submit").on("click", function() {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
     
-    var tr = $("<tr>")
-    var tdName = $("<td>").text(name);
-    var tdRole = $("<td>").text(role);
-    var tdDate = $("<td>").text(date);
-    var tdWorked = $("<td>"); // (calculate months)
-    var tdRate = $("<td>").text(rate);
-    var tdBilled = $("<td>"); // (rate*months)
-    tr.append(tdName).append(tdRole).append(tdDate).append(tdWorked).append(tdRate).append(tdBilled);
-    $("#newRow").append(tr);
+   
 
     
     $("#name").empty();
@@ -55,9 +47,30 @@ $("#submit").on("click", function() {
     $("#rate").empty();
 });   
 
+database.ref().on("child_added", function(snapshot) {
+    console.log(snapshot.val().name);
+    console.log(snapshot.val().role);
+    console.log(snapshot.val().date);
+    console.log(snapshot.val().rate);
+    
+    
+
+    var name = snapshot.val().name;
+    var role = snapshot.val().role;
+    var date = snapshot.val().date;
+    var rate = snapshot.val().rate;
 
 
+    var tr = $("<tr>")
+    var tdName = $("<td>").text(name);
+    var tdRole = $("<td>").text(role);
+    var tdDate = $("<td>").text(moment(date).format("MM/YYYY"));
+    var tdWorked = $("<td>"); // (calculate months)
+    var tdRate = $("<td>").text(rate);
+    var tdBilled = $("<td>"); // (rate*months)
+    tr.append(tdName).append(tdRole).append(tdDate).append(tdWorked).append(tdRate).append(tdBilled);
+    $("#newRow").append(tr);
 
-
+});
 
 
