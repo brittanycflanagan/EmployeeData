@@ -11,9 +11,6 @@
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 </head>
 <body>
-  <!-- Link to Moment.js should go here -->
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
         <div class="jumbotron jumbotron-fluid" id="jumbotron">
                 <div class="container">
                   <h1 class="display-4">Employee Data Management</h1>
@@ -23,17 +20,24 @@
               <div class="card">
                     <h5 class="card-header">Current Employees</h5>
                     <div class="card-body">
-                <table width="100%" border="0" >
-                    <tbody id ="newRow">
-                      <tr>
+                <table width="100%" border="0">
+                    <tbody>
+                      <tr id="tableHeaders">
                         <th>Employee Name</th>
                         <th>Role</th>
                         <th>Start Date</th>
                         <th>Months Worked</th>
                         <th>Monthly Rate ($)</th>
                         <th>Total Billed ($)</th>
-                      </tr>  
-                                  
+                      </tr>
+                      <div id="newRow">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </div>
                     </tbody>
                   </table>
                 </div>
@@ -69,6 +73,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
         <script text="text/javascript" src="assets/javascript/app.js"></script>
         
-        <!-- add firebase data -->
+      
+
 </body>
 </html>

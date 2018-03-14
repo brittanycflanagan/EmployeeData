@@ -47,6 +47,9 @@ $("#submit").on("click", function() {
     $("#rate").empty();
 });   
 
+function newRow(){
+    // $("#newRow").empty()
+
 database.ref().on("child_added", function(snapshot) {
     console.log(snapshot.val().name);
     console.log(snapshot.val().role);
@@ -55,22 +58,34 @@ database.ref().on("child_added", function(snapshot) {
     
     
 
-    var name = snapshot.val().name;
-    var role = snapshot.val().role;
-    var date = snapshot.val().date;
-    var rate = snapshot.val().rate;
+    var newName = snapshot.val().name;
+    var newRole = snapshot.val().role;
+    var newDate = snapshot.val().date;
+    var newRate = snapshot.val().rate;
+
+    var worked = (moment(newDate).diff(moment(), "months"))
+
+    function billed(x,y){
+        return x*y;
+    }
+    billed = billed(worked*newRate);
+
+    console.log("worked: " + worked);
+    console.log("billed: " + billed);
 
 
     var tr = $("<tr>")
-    var tdName = $("<td>").text(name);
-    var tdRole = $("<td>").text(role);
-    var tdDate = $("<td>").text(moment(date).format("MM/YYYY"));
-    var tdWorked = $("<td>"); // (calculate months)
-    var tdRate = $("<td>").text(rate);
-    var tdBilled = $("<td>"); // (rate*months)
+    var tdName = $("<td>").text(newName);
+    var tdRole = $("<td>").text(newRole);
+    var tdDate = $("<td>").text(moment(newDate).format("MM/YYYY"));
+    var tdWorked = $("<td>").text(worked);
+    var tdRate = $("<td>").text(newRate);
+    var tdBilled = $("<td>").text(billed);
+
     tr.append(tdName).append(tdRole).append(tdDate).append(tdWorked).append(tdRate).append(tdBilled);
     $("#newRow").append(tr);
 
 });
+};
 
 
