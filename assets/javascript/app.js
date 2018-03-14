@@ -3,6 +3,8 @@
 // var date = "";
 // var rate = "";
 
+//<a href src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></a>
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCcPVCxkJ8y2UTq7WEAlM36UXBb5uFZtac",
@@ -27,7 +29,7 @@ $("#submit").on("click", function() {
     
     console.log(name);
     console.log(role);
-    console.log(moment(date));
+    console.log(date);
     console.log(rate);
 
     database.ref().push({
@@ -45,16 +47,19 @@ $("#submit").on("click", function() {
     $("#role").empty();
     $("#date").empty();
     $("#rate").empty();
+
+    newRow();
 });   
 
 function newRow(){
-    // $("#newRow").empty()
+   
 
 database.ref().on("child_added", function(snapshot) {
     console.log(snapshot.val().name);
     console.log(snapshot.val().role);
     console.log(snapshot.val().date);
     console.log(snapshot.val().rate);
+    console.log(snapshot.val().dateAdded);
     
     
 
@@ -62,16 +67,26 @@ database.ref().on("child_added", function(snapshot) {
     var newRole = snapshot.val().role;
     var newDate = snapshot.val().date;
     var newRate = snapshot.val().rate;
+    var newDateAdded = snapshot.val().dateAdded;
 
-    var worked = (moment(newDate).diff(moment(), "months"))
+    console.log(newRate);
+
+    var dateFormat = "MM/DD/YYYY";
+    var convertedDate = moment(newDate, dateFormat)
+
+    var worked = (moment().diff(moment(convertedDate), "months"));
 
     function billed(x,y){
         return x*y;
     }
-    billed = billed(worked*newRate);
 
-    console.log("worked: " + worked);
-    console.log("billed: " + billed);
+    billed = billed(worked, newRate);
+
+    
+
+    console.log(worked);
+    console.log(billed);
+    //console.log(newBilled);
 
 
     var tr = $("<tr>")
