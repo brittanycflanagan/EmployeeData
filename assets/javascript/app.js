@@ -10,6 +10,15 @@ function putOnPage() {
     role = $("#role").val().trim();
     date = parseInt($("#date").val().trim());
     rate = parseInt($("#rate").val().trim());
+    
+    database.ref().push({
+        name: name,
+        role: role,
+        date: date,
+        rate: rate,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+    
     console.log(name);
     console.log(role);
     console.log(date);
