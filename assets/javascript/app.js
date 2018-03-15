@@ -41,17 +41,15 @@ $("#submit").on("click", function() {
       });
     
    
-
+    alert("Employee successfully added")
     
     $("#name").empty();
     $("#role").empty();
     $("#date").empty();
     $("#rate").empty();
 
-    newRow();
 });   
 
-function newRow(){
    
 
 database.ref().on("child_added", function(snapshot) {
@@ -101,6 +99,6 @@ database.ref().on("child_added", function(snapshot) {
     $("#newRow").append(tr);
 
 });
-};
+
 
 
