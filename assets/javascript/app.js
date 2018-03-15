@@ -43,10 +43,10 @@ $("#submit").on("click", function() {
    
     alert("Employee successfully added")
     
-    $("#name").empty();
-    $("#role").empty();
-    $("#date").empty();
-    $("#rate").empty();
+    $("#name").val("");
+    $("#role").val("");
+    $("#date").val("");
+    $("#rate").val("");
 
 });   
 
